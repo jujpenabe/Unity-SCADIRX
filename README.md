@@ -1,7 +1,7 @@
 # Simple Clean Architecture Example for Unity
 
-Based on this repo: https://github.com/genki-tx/UnitySimpleCleanArchitecture
-And medium article: https://genki-sano.medium.com/simple-clean-architecture-762b90e58d91		
+Based on [this repo.](https://github.com/genki-tx/UnitySimpleCleanArchitecture)
+And [this detailed article.](https://genki-sano.medium.com/simple-clean-architecture-762b90e58d91)		
 
 This is an example project of Unity GameEngine to explain the concept of "Simple Clean Architecture".  
 
@@ -9,7 +9,7 @@ This is an example project of Unity GameEngine to explain the concept of "Simple
 Simple Clean Architecture (SCA) is a software architecture based on the concept of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 Clean Architecture provides great concept to keep our software clean and less coupled. However, if you make software by the strict guideline of Clean Architecture, your software project structure may be a bit redundant. (e.g., using Repository, Use input port, Data Access, ... to access data)  
 SCA is simplified and ready-to-implement design pattern of Clean Architecture. You can see the similarity with MVP, MVVM design patterns. In SCA, we have 5 components (Entity, Gateway, Usecase, Presenter, View) defined in Clean Architecture. Each component should be less coupled and managed by Dependency Injection(DI). We also use Reactive Programming design pattern to communicate each component within less coupled dependency.  
-For the detail of Simple Clean Architecture, please refer [this article](https://genki-sano.medium.com/simple-clean-architecture-762b90e58d91).
+
 
 ## Components  
 SCA provides you good advantages if your Unity project has a huge codebase. We classify your code logic into 5 groups (Entity, Gateway, Usecase, Presenter, View). Let's see each role.  
