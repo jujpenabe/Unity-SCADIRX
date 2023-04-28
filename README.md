@@ -1,5 +1,8 @@
 # Simple Clean Architecture Example for Unity
 
+Based on this repo: https://github.com/genki-tx/UnitySimpleCleanArchitecture
+And medium article: https://genki-sano.medium.com/simple-clean-architecture-762b90e58d91		
+
 This is an example project of Unity GameEngine to explain the concept of "Simple Clean Architecture".  
 
 ## Simple Clean Architecture?
