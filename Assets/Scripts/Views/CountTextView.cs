@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using UniRx;
 using Zenject;
@@ -12,22 +13,57 @@ namespace SCA
     // View can inherit Monobehaviour
     public class CountTextView : MonoBehaviour
     {
-        public CountType Type;
+        public CountTypeReactiveProperty Type;
 
         [Inject]
         private ICountPresenter _presenter;
         private Text _text;
+        private IReadOnlyReactiveProperty<int> _reactive_property;
+        private IDisposable subscription;   // Handles which property to subscribe
+
+        // Make CountType a serializable reactive property
+        [Serializable]
+        public class CountTypeReactiveProperty : ReactiveProperty<CountType> {
+            public CountTypeReactiveProperty() { }
+            public CountTypeReactiveProperty(CountType initialValue) : base(initialValue) { }
+        }
+        // Make CountType reactive property inspectable in Unity Editor
+        [UnityEditor.CustomPropertyDrawer(typeof(CountTypeReactiveProperty))]
+        public class ExtendInspectorDisplayDrawer : InspectorDisplayDrawer { }
 
         private void Start()
         {
             _text = GetComponent<Text>();
 
-            var reactive_property = Type == CountType.A ? _presenter.CountA : _presenter.CountB;
+            var reactive_property_type = Type;
+            var _reactive_property = Type.Value == CountType.A ? _presenter.CountA : _presenter.CountB;
 
-            reactive_property.Subscribe((x) =>
+            subscription = _reactive_property
+            .Subscribe((x) =>
             {
                 UpdateText(x);
             }).AddTo(this);
+
+            reactive_property_type.Subscribe((x) =>
+            {
+                switch (x)
+                {
+                    case CountType.A:
+                        _reactive_property = _presenter.CountA;
+                        break;
+                    case CountType.B:
+                        _reactive_property = _presenter.CountB;
+                        break;
+                }
+                UpdateText(_reactive_property.Value);
+                subscription.Dispose();
+                subscription = _reactive_property.Subscribe((x) =>
+                {
+                    UpdateText(x);
+                }).AddTo(this);
+
+            }).AddTo(this);
+
 
             UpdateText(0); // Initialize
         }
