@@ -21,15 +21,7 @@ namespace SCA
         private IReadOnlyReactiveProperty<int> _reactive_property;
         private IDisposable subscription;   // Handles which property to subscribe
 
-        // Make CountType a serializable reactive property
-        [Serializable]
-        public class CountTypeReactiveProperty : ReactiveProperty<CountType> {
-            public CountTypeReactiveProperty() { }
-            public CountTypeReactiveProperty(CountType initialValue) : base(initialValue) { }
-        }
-        // Make CountType reactive property inspectable in Unity Editor
-        [UnityEditor.CustomPropertyDrawer(typeof(CountTypeReactiveProperty))]
-        public class ExtendInspectorDisplayDrawer : InspectorDisplayDrawer { }
+        
 
         private void Start()
         {

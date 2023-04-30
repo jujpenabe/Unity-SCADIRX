@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -56,4 +57,14 @@ namespace SCA
             _usecase.IncrementCount(type);
         }
     }
+
+    // Make CountType a serializable reactive property
+    [Serializable]
+    public class CountTypeReactiveProperty : ReactiveProperty<CountType> {
+        public CountTypeReactiveProperty() { }
+        public CountTypeReactiveProperty(CountType initialValue) : base(initialValue) { }
+    }
+    // Make CountType reactive property inspectable in Unity Editor
+    [UnityEditor.CustomPropertyDrawer(typeof(CountTypeReactiveProperty))]
+    public class ExtendInspectorDisplayDrawer : InspectorDisplayDrawer { }
 }
