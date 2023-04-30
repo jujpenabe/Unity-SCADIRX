@@ -27,7 +27,6 @@ namespace SCA
         {
             _text = GetComponent<Text>();
 
-            var reactive_property_type = Type;
             var _reactive_property = Type.Value == CountType.A ? _presenter.CountA : _presenter.CountB;
 
             subscription = _reactive_property
@@ -36,7 +35,7 @@ namespace SCA
                 UpdateText(x);
             }).AddTo(this);
 
-            reactive_property_type.Subscribe((x) =>
+            Type.Subscribe((x) =>
             {
                 switch (x)
                 {
