@@ -21,8 +21,6 @@ namespace SCA
         private IReadOnlyReactiveProperty<int> _reactive_property;
         private IDisposable subscription;   // Handles which property to subscribe
 
-        
-
         private void Start()
         {
             _text = GetComponent<Text>();
