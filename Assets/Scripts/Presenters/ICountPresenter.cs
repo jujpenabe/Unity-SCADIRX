@@ -12,5 +12,7 @@ namespace SCA
         // Method to increase specified type's counter
         // You can get the result of the count by CountA or CountB reactive property
         void IncrementCount(CountType type);
+
+        void ResetCount(CountType type);
     }
 }
