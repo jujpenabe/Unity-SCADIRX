@@ -56,6 +56,11 @@ namespace SCA
         {
             _usecase.IncrementCount(type);
         }
+
+        public void ResetCount(CountType type)
+        {
+            _usecase.ResetCount(type);
+        }
     }
 
     // Make CountType a serializable reactive property

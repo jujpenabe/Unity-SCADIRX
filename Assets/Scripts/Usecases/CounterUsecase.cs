@@ -48,6 +48,16 @@ namespace SCA
             _counts.SetValueAndForceNotify(dict);
         }
 
+        public void ResetCount(CountType type)
+        {
+            _gateway.SetCount(type, 0);
+
+            // publish the value changed
+            var dict = _counts.Value;
+            dict[type].Num = 0;
+            _counts.SetValueAndForceNotify(dict);
+        }
+
         public int GetCount(CountType type)
         {
             return _gateway.GetCount(type);
