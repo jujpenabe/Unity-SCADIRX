@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 using UniRx;
+using Reflex.Attributes;
 using TMPro;
 
 namespace SCA
@@ -13,9 +13,9 @@ namespace SCA
     // View can inherit Monobehaviour
     public class CountResetButtonView : MonoBehaviour
     {
-        public CountTypeReactiveProperty Type;
+        public CountTypeReactiveProperty Type; // ReactiveProperty is a kind of Observable. You can subscribe to it.
         [Inject]
-        private ICountPresenter _presenter;
+        private ICountPresenter _presenter; // Inject interfaces, not concrete classes
         private Button _button;
         private TMP_Text _text;
         private void Start()
