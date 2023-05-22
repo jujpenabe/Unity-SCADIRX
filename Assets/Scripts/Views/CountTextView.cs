@@ -2,8 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UniRx;
-using Zenject;
-
+using Reflex.Attributes;
 namespace SCA
 {
     // View
